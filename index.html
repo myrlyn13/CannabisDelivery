@@ -75,10 +75,21 @@
                 <button type="submit">Send</button>
             </form>
         </section>
+        <section id="verification">
+    <h2>Medical Card Verification</h2>
+    <form id="verification-form">
+        <input type="text" name="card-number" placeholder="Medical Card Number" required>
+        <input type="date" name="expiration-date" required>
+        <input type="file" name="card-image" accept="image/*" required>
+        <button type="submit">Submit for Verification</button>
+    </form>
+</section>
     </main>
     <footer>
-        <p>&copy; 2023 MediGreen Delivery. All rights reserved.</p>
-    </footer>
+    <p>&copy; 2023 MediGreen Delivery. All rights reserved.</p>
+    <p>Disclaimer: This product is intended for use only in states where the sale of medical cannabis is legal.</p>
+    <a href="terms.html">Terms of Service</a> | <a href="privacy.html">Privacy Policy</a>
+</footer>
     <script src="js/age-verification.js"></script>
     <script src="js/main.js"></script>
 </body>
