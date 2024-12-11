@@ -37,6 +37,8 @@ function displayProducts() {
         const productElement = document.createElement('div');
         productElement.classList.add('product-item');
         productElement.innerHTML = `
+        <p class="warning">Warning: This product contains THC. Do not operate a vehicle or machinery under the influence of this product. Keep out of reach of children.</p>
+        ';
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>Price: $${product.price.toFixed(2)}</p>
