@@ -10,9 +10,11 @@
     <div id="age-verification" class="modal">
         <div class="modal-content">
             <h2>Age Verification</h2>
-            <p>You must be 21 years or older to view this site.</p>
-            <button id="confirm-age">I am 21 or older</button>
-            <button id="reject-age">I am under 21</button>
+            <p>You must be of legal age to access this website. Please enter your date of birth:</p>
+            <form id="age-verification-form">
+            <input type="date" id="dob" required>
+                <button type="submit">Verify Age</button>
+            </form>
         </div>
     </div>
     <div id="product-modal" class="modal">
@@ -97,7 +99,7 @@
     <p class="medical-disclaimer">Disclaimer: This website does not provide medical advice. Consult with a qualified healthcare professional before using any medical cannabis products.</p>
     <a href="terms.html">Terms of Service</a> | <a href="privacy.html">Privacy Policy</a>
 </footer>
-    <script src="js/age-verification.js"></script>
+    <script src="js/verification.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
