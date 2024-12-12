@@ -43,6 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         if (!checkRateLimit('age')) return;
 
+        const captchaResponse = grecaptcha.getResponse();
+    if (!captchaResponse) {
+        alert('Please complete the CAPTCHA');
+        return;
+    }
+
         const dob = new Date(document.getElementById('dob').value);
         const age = calculateAge(dob);
 
@@ -63,6 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
     medicalCardForm.addEventListener('submit', (e) => {
         e.preventDefault();
         if (!checkRateLimit('medical')) return;
+
+        const captchaResponse = grecaptcha.getResponse();
+    if (!captchaResponse) {
+        alert('Please complete the CAPTCHA');
+        return;
+    }
 
         const cardNumber = document.getElementById('card-number').value;
         const cardExpiry = document.getElementById('card-expiry').value;
@@ -101,3 +113,21 @@ function verifyMedicalCard(cardNumber, cardExpiry, cardImage) {
         }, 2000);
     });
 }
+
+function setVerificationStatus(type, status) {
+    sessionStorage.setItem(`${type}Verified`, status);
+    // Also send a request to the server to set an HttpOnly cookie
+    fetch('/api/set-verification-cookie', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ type, status }),
+    });
+}
+
+function getVerificationStatus(type) {
+    return sessionStorage.getItem(`${type}Verified`) === 'true';
+}
+
+// Use these functions instead of directly accessing localStorage
