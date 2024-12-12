@@ -54,11 +54,17 @@ form {
     display: flex;
     flex-direction: column;
     max-width: 300px;
+    gap: 10px;
 }
 
 input, textarea, button {
     margin-bottom: 10px;
     padding: 5px;
+}
+
+input, button (
+    padding: 10px;
+    font-size: 16px;
 }
 
 button {
@@ -67,6 +73,10 @@ button {
     border: none;
     padding: 10px;
     cursor: pointer;
+}
+
+button:hover (
+    background-color: #45a049;
 }
 
 footer {
@@ -96,7 +106,7 @@ footer {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 600px;
+    max-width: 500px;
 }
 
 .close {
