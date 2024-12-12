@@ -13,6 +13,7 @@
             <h2>Age Verification</h2>
             <p>You must be of legal age to access this website. Please enter your date of birth:</p>
             <form id="age-verification-form">
+                <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
                 <input type="date" id="dob" required>
                 <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
                 <button type="submit">Verify Age</button>
