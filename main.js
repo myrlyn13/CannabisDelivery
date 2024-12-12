@@ -42,6 +42,7 @@ function displayProducts() {
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>Price: $${product.price.toFixed(2)}</p>
+            <p class="warning">For medical use only. Keep out of reach of children.</p>
             <button onclick="showProductDetails(${product.id})">View Details</button>
             <button onclick="addToCart(${product.id})">Add to Cart</button>
         `;
