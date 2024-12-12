@@ -80,6 +80,28 @@ function showProductDetails(productId) {
     modal.style.display = 'block';
 }
 
+function checkLocation() {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            
+            // Here you would make an API call to your backend to check if this location is in a legal area
+            // For demonstration, we'll just log the coordinates
+            console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+            // If not in a legal area, you might want to redirect or show a warning
+        }, function(error) {
+            console.error("Error: " + error.message);
+            // Handle error - maybe show a message that location is required to use the site
+        });
+    } else {
+        console.log("Geolocation is not available");
+        // Handle lack of geolocation - maybe show a message that location is required to use the site
+    }
+}
+
+document.addEventListener('DOMContentLoaded', checkLocation);
+
 // Close modal when clicking on the close button or outside the modal
 window.onclick = function(event) {
     const modal = document.getElementById('product-modal');
