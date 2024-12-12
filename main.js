@@ -51,6 +51,12 @@ function displayProducts() {
 }
 
 function showProductDetails(productId) {
+    if (!localStorage.getItem('ageVerified') || !localStorage.getItem('medicalCardVerified'))
+        alert('You must verify your age and medical card to view product details.');
+    return;
+}
+
+function showProductDetails(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
@@ -131,6 +137,11 @@ function handleFormSubmission(event) {
 }
 
 // Event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    if (!localStorage.getItem('ageVerified') || !localStorage.getItem('medicalCardVerified'))
+        // If not verified, don't load products
+        return;
+}
 document.addEventListener('DOMContentLoaded', () => {
     displayProducts();
     document.getElementById('contact-form').addEventListener('submit', handleFormSubmission);
