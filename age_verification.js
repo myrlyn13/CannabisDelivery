@@ -13,6 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     rejectAge.addEventListener('click', () => {
-        window.location.href = 'https://www.google.com';
+        window.location.href = 'https://www.google.com'; // Redirect to a safe site
     });
 });
