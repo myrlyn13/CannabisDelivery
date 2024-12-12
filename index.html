@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediGreen Delivery</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div id="age-verification" class="modal">
@@ -12,8 +13,23 @@
             <h2>Age Verification</h2>
             <p>You must be of legal age to access this website. Please enter your date of birth:</p>
             <form id="age-verification-form">
-            <input type="date" id="dob" required>
+                <input type="date" id="dob" required>
+                <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
                 <button type="submit">Verify Age</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="medical-card-verification" class="modal">
+        <div class="modal-content">
+            <h2>Medical Card Verification</h2>
+            <p>Please provide your medical cannabis card information:</p>
+            <form id="medical-card-form">
+                <input type="text" id="card-number" placeholder="Card Number" required>
+                <input type="date" id="card-expiry" required>
+                <input type="file" id="card-image" accept="image/*" required>
+                <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+                <button type="submit">Verify Medical Card</button>
             </form>
         </div>
     </div>
