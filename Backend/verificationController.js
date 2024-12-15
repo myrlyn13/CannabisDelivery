@@ -1,6 +1,15 @@
+npm install multer
+const Recaptcha = require('express-recaptcha').RecaptchaV2;
+const recaptcha = new Recaptcha(process.env.RECAPTCHA_SITE_KEY, process.env.RECAPTCHA_SECRET_KEY);
 const User = require('../models/User');
 const { verifyAge, verifyMedicalCard } = require('../services/verificationService');
 
+exports.verifyAge = [
+  recaptcha.middleware.verify,
+  async (req, res) => {
+    if (req.recaptcha.error) {
+      return res.status(400).json({ message: 'CAPTCHA verification failed' });
+    }
 exports.verifyAge = async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
@@ -18,7 +27,7 @@ exports.verifyAge = async (req, res) => {
         return res.status(429).json({ message: 'Too many attempts. Please try again later.' });
       }
     }
-
+];
     const isVerified = await verifyAge(user.dateOfBirth);
     if (isVerified) {
       user.isAgeVerified = true;
@@ -35,7 +44,12 @@ exports.verifyAge = async (req, res) => {
     res.status(500).json({ message: 'Error verifying age', error: error.message });
   }
 };
-
+exports.verifyMedicalCard = [
+  recaptcha.middleware.verify,
+  async (req, res) => {
+    if (req.recaptcha.error) {
+      return res.status(400).json({ message: 'CAPTCHA verification failed' });
+    }
 exports.verifyMedicalCard = async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
@@ -53,7 +67,7 @@ exports.verifyMedicalCard = async (req, res) => {
         return res.status(429).json({ message: 'Too many attempts. Please try again later.' });
       }
     }
-
+];
     const isVerified = await verifyMedicalCard(user.medicalCardNumber, user.medicalCardExpiry, user.medicalCardImageUrl);
     if (isVerified) {
       user.isMedicalCardVerified = true;
