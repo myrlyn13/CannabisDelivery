@@ -6,12 +6,13 @@ require('dotenv').config();
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
-
+const verificationRoutes = require('./routes/verificationRoutes');
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/api/verification', verificationRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
