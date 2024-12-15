@@ -3,6 +3,7 @@ const router = express.Router();
 const verificationController = require('../controllers/verificationController');
 const auth = require('../middleware/auth');
 const rateLimit = require('express-rate-limit');
+const upload = require('../middleware/upload');
 
 const verificationLimiter = rateLimit({
   windowMs: 30 * 60 * 1000, // 30 minutes
@@ -12,5 +13,6 @@ const verificationLimiter = rateLimit({
 
 router.post('/verify-age', auth, verificationLimiter, verificationController.verifyAge);
 router.post('/verify-medical-card', auth, verificationLimiter, verificationController.verifyMedicalCard);
+router.post('/verify-medical-card', auth, verificationLimiter, upload.single('medicalCardImage'), verificationController.verifyMedicalCard);
 
 module.exports = router;
