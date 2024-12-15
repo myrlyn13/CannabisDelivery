@@ -8,7 +8,11 @@ const UserSchema = new mongoose.Schema({
   dateOfBirth: { type: Date, required: true },
   medicalCardNumber: { type: String, required: true },
   medicalCardExpiry: { type: Date, required: true },
-  isVerified: { type: Boolean, default: false },
+  medicalCardImageUrl: { type: String, required: true },
+  isAgeVerified: { type: Boolean, default: false },
+  isMedicalCardVerified: { type: Boolean, default: false },
+  verificationAttempts: { type: Number, default: 0 },
+  lastVerificationAttempt: { type: Date },
 });
 
 UserSchema.pre('save', async function(next) {
